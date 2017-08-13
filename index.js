@@ -46,18 +46,22 @@ function yss (...args) {
   return styleInstance(...args)
 }
 
-// this is the global style that might be attached to the header of renders a css serverside
+// this is the global style that might be attached to the header or renders a css serverside
 yss.style = {}
 
 // this is the function to create helpers. Helpers are attached to the prototype of the styling
 // instances and to yss itself. When called on yss, they automatically create an instance and
 // and call the helpers on them right away
-yss.helper = function (name, def) {
-  if (def.length === 1) {
+yss.helper = function (name, ...args) {
+  let fn = args[0]
+  if (typeof args[0] === 'string' || Array.isArray(args[0]) || args[0].style) {
+    fn = y => y(...args)
+  }
+  if (fn.length === 1) {
     // set to baseInstance
     Object.defineProperty(baseInstance, name, {
       get: function () {
-        def(this)
+        fn(this)
         return this
       }
     })
@@ -69,7 +73,7 @@ yss.helper = function (name, def) {
   } else {
     // set to baseInstance
     baseInstance[name] = function (...args) {
-      def(this, ...args)
+      fn(this, ...args)
       return this
     }
     // set to yss itself

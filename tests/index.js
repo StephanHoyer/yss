@@ -69,6 +69,21 @@ o('css classes and global style', () => {
 })
 
 o.spec('helper', () => {
+  o('plain string', () => {
+    yss.helper('fillGreen', 'fill: green')
+    o(yss.fillGreen.style).deepEquals({ fill: 'green' })
+  })
+
+  o('template string', () => {
+    yss.helper('fillBlue', `fill: ${'blue'}`)
+    o(yss.fillBlue.style).deepEquals({ fill: 'blue' })
+  })
+
+  o('plain yss', () => {
+    yss.helper('fillTomato', yss`fill: tomato`)
+    o(yss.fillTomato.style).deepEquals({ fill: 'tomato' })
+  })
+
   o('without args', () => {
     yss.helper('fillOlive', y => y`fill: olive`)
     o(yss.fillOlive.style).deepEquals({ fill: 'olive' })
