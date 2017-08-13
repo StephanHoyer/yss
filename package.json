@@ -1,0 +1,19 @@
+{
+  "name": "yss",
+  "version": "0.1.0",
+  "description": "why style sheets?",
+  "main": "index.js",
+  "scripts": {
+    "test": "ospec"
+  },
+  "keywords": [
+    "css",
+    "modular",
+    "style"
+  ],
+  "author": "Stephan Hoyer <ste.hoyer@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "ospec": "1.3.1"
+  }
+}
