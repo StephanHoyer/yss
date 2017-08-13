@@ -19,7 +19,7 @@ o.spec('create style instance', () => {
       color: 'green',
       border: '1px solid green',
       fill: 'brown',
-      borderRadius: '1rem 2rem 3rem 4rem',
+      borderRadius: '1rem 2rem 3rem 4rem'
     })
   })
 
@@ -90,7 +90,7 @@ o.spec('helper', () => {
 })
 
 o.spec('pseudo classes', () => {
-  yss.helper('$hover', (y, hoverStyle) => { /// todo support multiple args
+  yss.helper('$hover', (y, hoverStyle) => { // / todo support multiple args
     if (!y.style.$hover || !y.style.$hover.style) {
       y.style.$hover = yss(y.style.$hover)
     }
@@ -103,7 +103,7 @@ o.spec('pseudo classes', () => {
   })
 
   o('multiple hover style', () => {
-    o(yss({ $hover: { display: 'inline'}}).$hover({color: 'brown'}).style.$hover.style).deepEquals({
+    o(yss({ $hover: { display: 'inline' } }).$hover({ color: 'brown' }).style.$hover.style).deepEquals({
       display: 'inline',
       color: 'brown'
     })
@@ -125,9 +125,3 @@ o.spec('pseudo classes', () => {
     })
   })
 })
-/*
-
-
-
-
-*/
