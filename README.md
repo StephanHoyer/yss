@@ -10,7 +10,7 @@ Given that you use the mighty [mithril.js](https://mithril.js.org) wouldn't it b
 m('a' + yss.fsL.dIb.bgBlue.fgWhite.brPill.boNone.hoGrow.ulNone, { href: '#' }, 'Click me')
 ```
 
-or even
+or
 
 ```
 const f = (tag, className) => (...args) => m(tag + className, ...args)
@@ -19,7 +19,13 @@ const myStyledButtonLink = f('a', yss.fsL.dIb.bgBlue.fgWhite.brPill.boNone.hoGro
 myStyledButtonLink({ href: '#' }, 'Click me')
 ```
 
-Well with *yss* this will be possible.
+or even
+
+```
+a.fsL.dIb.bgBlue.fgWhite.brPill.boNone.hoGrow.ulNone({ href: '#' }, 'Click me')
+```
+
+Well with *yss* this might be possible.
 
 Heavily inspired by https://github.com/porsager/bss. Thanks Rasmus!
 
