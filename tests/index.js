@@ -6,7 +6,6 @@ o.spec('create style instance', () => {
     o(yss('color', 'purple').style).deepEquals({color: 'purple'})
   })
 
-  // todo template strings with args
   o('template strings', () => {
     var y = yss`
       transform: scale(123)
@@ -90,8 +89,8 @@ o.spec('helper', () => {
   })
 
   o('with args', () => {
-    yss.helper('fill', (y, color) => y({fill: color}))
-    o(yss.fill('karmin').style).deepEquals({ fill: 'karmin' })
+    yss.helper('grad', (y, color1, color2) => y({background: `linear-gradient(to bottom, ${color1}, ${color2})`}))
+    o(yss.grad('karmin', 'red').style).deepEquals({ background: 'linear-gradient(to bottom, karmin, red)' })
   })
 
   o('helper uses other helper', () => {
@@ -105,15 +104,25 @@ o.spec('helper', () => {
 })
 
 o.spec('pseudo classes', () => {
-  yss.helper('$hover', (y, hoverStyle) => { // / todo support multiple args
+  yss.helper('$hover', (y, hoverStyle) => {
     if (!y.style.$hover || !y.style.$hover.style) {
       y.style.$hover = yss(y.style.$hover)
     }
     y.style.$hover(hoverStyle)
   })
 
-  o('add hover style', () => {
-    const y = yss.$hover(yss({color: 'black'}))
+  o('add hover style as obj', () => {
+    const y = yss.$hover({color: 'black'})
+    o(y.style.$hover.style).deepEquals({color: 'black'})
+  })
+
+  o('add hover style as sting', () => {
+    const y = yss.$hover('color black')
+    o(y.style.$hover.style).deepEquals({color: 'black'})
+  })
+
+  o('add hover style as yss instance', () => {
+    const y = yss.$hover(yss`color ${'black'}`)
     o(y.style.$hover.style).deepEquals({color: 'black'})
   })
 
