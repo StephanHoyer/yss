@@ -9,7 +9,8 @@ const baseInstance = {
     const classname = 'someClass' + classCounter++
     yss.style[classname] = this.style
     return '.' + classname
-  }
+  },
+  toString: function() { return this.class }
 }
 
 function parseStyle (key, ...args) {

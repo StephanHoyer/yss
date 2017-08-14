@@ -60,7 +60,7 @@ o('css classes and global style', () => {
   const y1 = yss({fill: 'rose'})
   const y2 = yss({fill: 'gold'})
   o(y1.class).equals('.someClass0')
-  o(y2.class).equals('.someClass1')
+  o('' + y2).equals('.someClass1')
   o(yss.style).deepEquals({
     someClass0: { fill: 'rose' },
     someClass1: { fill: 'gold' }
