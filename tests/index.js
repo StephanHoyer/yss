@@ -104,11 +104,11 @@ o.spec('helper', () => {
 })
 
 o.spec('pseudo classes', () => {
-  yss.helper('$hover', (y, hoverStyle) => {
+  yss.helper('$hover', (y, key, ...args) => {
     if (!y.style.$hover || !y.style.$hover.style) {
       y.style.$hover = yss(y.style.$hover)
     }
-    y.style.$hover(hoverStyle)
+    y.style.$hover(key, ...args)
   })
 
   o('add hover style as obj', () => {
@@ -118,6 +118,11 @@ o.spec('pseudo classes', () => {
 
   o('add hover style as sting', () => {
     const y = yss.$hover('color black')
+    o(y.style.$hover.style).deepEquals({color: 'black'})
+  })
+
+  o('add hover style as template sting', () => {
+    const y = yss.$hover`color ${'black'}`
     o(y.style.$hover.style).deepEquals({color: 'black'})
   })
 
@@ -141,7 +146,7 @@ o.spec('pseudo classes', () => {
   })
 
   o('merge pseudos', () => {
-    const y = yss.$hover(yss({background: 'red'})).$hover(yss({color: 'green'})).$hover`fill red`
+    const y = yss.$hover(yss({background: 'red'})).$hover(yss({color: 'green'})).$hover`fill  ${'red'} `
     o(y.style.$hover.style).deepEquals({
       background: 'red',
       color: 'green',
