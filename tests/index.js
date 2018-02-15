@@ -70,10 +70,13 @@ o('css classes and global style', () => {
 o('render global style css', () => {
   yss.reset();
   const y = yss({backgroundColor: 'green'})
-  y.style.$hover = yss({fill: 'darkgreen'})
-  y.style.$hover.style.$focus = yss({fill: 'darkergreen'})
+  y.style[':pseudo(1)'] = yss({fill: 'darkgreen'})
+  y.style[':pseudo(1)'].style[':pseudo(2)'] = yss({fill: 'darkergreen'})
   o(y.class).equals('.someClass0')
-  o(yss.css).deepEquals('.someClass0{background-color:green}.someClass0:hover{fill:darkgreen}.someClass0:hover:focus{fill:darkergreen}')
+  o(yss.css).deepEquals('.someClass0{background-color:green}'
+    + '.someClass0:pseudo(1){fill:darkgreen}'
+    + '.someClass0:pseudo(1):pseudo(2){fill:darkergreen}'
+  )
 })
 
 o.spec('helper', () => {
@@ -114,34 +117,34 @@ o.spec('helper', () => {
 
 o.spec('pseudo classes', () => {
   yss.helper('$hover', (y, key, ...args) => {
-    if (!y.style.$hover || !y.style.$hover.style) {
-      y.style.$hover = yss(y.style.$hover)
+    if (!y.style[':hover'] || !y.style[':hover'].style) {
+      y.style[':hover'] = yss(y.style[':hover'])
     }
-    y.style.$hover(key, ...args)
+    y.style[':hover'](key, ...args)
   })
 
   o('add hover style as obj', () => {
     const y = yss.$hover({color: 'black'})
-    o(y.style.$hover.style).deepEquals({color: 'black'})
+    o(y.style[':hover'].style).deepEquals({color: 'black'})
   })
 
   o('add hover style as sting', () => {
     const y = yss.$hover('color black')
-    o(y.style.$hover.style).deepEquals({color: 'black'})
+    o(y.style[':hover'].style).deepEquals({color: 'black'})
   })
 
   o('add hover style as template sting', () => {
     const y = yss.$hover`color ${'black'}`
-    o(y.style.$hover.style).deepEquals({color: 'black'})
+    o(y.style[':hover'].style).deepEquals({color: 'black'})
   })
 
   o('add hover style as yss instance', () => {
     const y = yss.$hover(yss`color ${'black'}`)
-    o(y.style.$hover.style).deepEquals({color: 'black'})
+    o(y.style[':hover'].style).deepEquals({color: 'black'})
   })
 
   o('multiple hover style', () => {
-    o(yss({ $hover: { display: 'inline' } }).$hover({ color: 'brown' }).style.$hover.style).deepEquals({
+    o(yss({ [':hover']: { display: 'inline' } }).$hover({ color: 'brown' }).style[':hover'].style).deepEquals({
       display: 'inline',
       color: 'brown'
     })
@@ -151,12 +154,12 @@ o.spec('pseudo classes', () => {
     yss.helper('bgBlue', y => y`background blue`)
     yss.helper('hoverDarken', y => y.$hover(yss('background', `dark${y.style.background}`)))
     o(yss.bgBlue.hoverDarken.style.background).equals('blue')
-    o(yss.bgBlue.hoverDarken.style.$hover.style.background).equals('darkblue')
+    o(yss.bgBlue.hoverDarken.style[':hover'].style.background).equals('darkblue')
   })
 
   o('merge pseudos', () => {
     const y = yss.$hover(yss({background: 'red'})).$hover(yss({color: 'green'})).$hover`fill  ${'red'} `
-    o(y.style.$hover.style).deepEquals({
+    o(y.style[':hover'].style).deepEquals({
       background: 'red',
       color: 'green',
       fill: 'red'
