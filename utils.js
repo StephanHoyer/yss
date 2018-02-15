@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 
-var KEBAB_REGEX = /[A-Z\u00C0-\u00D6\u00D8-\u00DE]/g;
+var KEBAB_REGEX = /[A-Z\u00C0-\u00D6\u00D8-\u00DE]/g
 
 function kebabCase(str) {
   return str.replace(KEBAB_REGEX, match => `-${match.toLowerCase()}`)
@@ -11,9 +11,14 @@ function camelize(s) {
 }
 
 function cleanSplit(s, regExp) {
-  return s.split(regExp).map(a => a.trim()).filter(a => a)
+  return s
+    .split(regExp)
+    .map(a => a.trim())
+    .filter(a => a)
 }
 
 module.exports = {
-  kebabCase, camelize, cleanSplit
+  kebabCase,
+  camelize,
+  cleanSplit,
 }

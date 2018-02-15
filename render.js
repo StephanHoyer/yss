@@ -23,7 +23,9 @@ function toCssDefinition(cssClass, style) {
 }
 
 module.exports = function(style) {
-  return keys(style).map(function (cssClass) {
-    return `${toCssDefinition(cssClass, style[cssClass])}`
-  }).join('')
+  return keys(style)
+    .map(function(cssClass) {
+      return `${toCssDefinition(cssClass, style[cssClass])}`
+    })
+    .join('')
 }
