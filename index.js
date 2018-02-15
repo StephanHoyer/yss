@@ -1,14 +1,15 @@
-let classCounter = 0
+'use strinct'
+const { camelize, cleanSplit } = require('./utils')
+const render = require('./render')
 
-const camelize = s => s.replace(/-([a-z])/g, g => g[1].toUpperCase())
-const cleanSplit = (s, regExp) => s.split(regExp).map(a => a.trim()).filter(a => a)
+let classCounter = 0
 
 // this is the prototype of a styling instance.
 const baseInstance = {
   get class () {
-    const classname = 'someClass' + classCounter++
+    const classname = '.someClass' + classCounter++
     yss.style[classname] = this.style
-    return '.' + classname
+    return classname
   },
   toString: function() { return this.class }
 }
@@ -47,8 +48,10 @@ function yss (...args) {
   return styleInstance(...args)
 }
 
-// this is the global style that might be attached to the header or renders a css serverside
 yss.style = {}
+Object.defineProperty(yss, 'css', {
+  get: () => render(yss.style)
+})
 
 // this is the function to create helpers. Helpers are attached to the prototype of the styling
 // instances and to yss itself. When called on yss, they automatically create an instance and
@@ -79,6 +82,11 @@ yss.helper = function (name, ...args) {
     }
     // set to yss itself
     yss[name] = (...args) => yss({})[name](...args)
+  }
+
+  yss.reset = () => {
+    classCounter = 0
+    yss.style = {}
   }
 }
 

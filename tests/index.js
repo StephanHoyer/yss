@@ -62,9 +62,18 @@ o('css classes and global style', () => {
   o(y1.class).equals('.someClass0')
   o('' + y2).equals('.someClass1')
   o(yss.style).deepEquals({
-    someClass0: { fill: 'rose' },
-    someClass1: { fill: 'gold' }
+    '.someClass0': { fill: 'rose' },
+    '.someClass1': { fill: 'gold' }
   })
+})
+
+o('render global style css', () => {
+  yss.reset();
+  const y = yss({backgroundColor: 'green'})
+  y.style.$hover = yss({fill: 'darkgreen'})
+  y.style.$hover.style.$focus = yss({fill: 'darkergreen'})
+  o(y.class).equals('.someClass0')
+  o(yss.css).deepEquals('.someClass0{background-color:green}.someClass0:hover{fill:darkgreen}.someClass0:hover:focus{fill:darkergreen}')
 })
 
 o.spec('helper', () => {
