@@ -1,11 +1,17 @@
 const o = require('ospec')
-const yss = require('..')
+const Yss = require('..')
 const pseudo = require('../helpers/pseudo')
 
 o.spec('pseudo helper', () => {
-  pseudo(yss, 'hover')
+  let yss
+
+  o.beforeEach(() => {
+    yss = Yss()
+    pseudo(yss, 'hover')
+  })
+
   o('add hover style as obj', () => {
-    const y = yss.foobar({ color: 'black' })
+    const y = yss.hover({ color: 'black' })
     o(y.style[':hover'].style).deepEquals({ color: 'black' })
   })
 })
