@@ -47,13 +47,13 @@ o.spec('yss', () => {
 
   o.spec('chaining', () => {
     o('combine multiple calls', () => {
-      o(yss({ fill: 'red' })({ border: 'green' })`color yellow`.style).deepEquals(
-        {
-          fill: 'red',
-          border: 'green',
-          color: 'yellow',
-        }
-      )
+      o(
+        yss({ fill: 'red' })({ border: 'green' })`color yellow`.style
+      ).deepEquals({
+        fill: 'red',
+        border: 'green',
+        color: 'yellow',
+      })
     })
 
     o('overwrite', () => {
@@ -83,8 +83,8 @@ o.spec('yss', () => {
     o(y.class).equals('.y0')
     o(yss.css).deepEquals(
       '.y0{background-color:green}' +
-      '.y0:pseudo(1){fill:darkgreen}' +
-      '.y0:pseudo(1):pseudo(2){fill:darkergreen}'
+        '.y0:pseudo(1){fill:darkgreen}' +
+        '.y0:pseudo(1):pseudo(2){fill:darkergreen}'
     )
   })
 

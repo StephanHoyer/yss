@@ -2,7 +2,8 @@
 const { camelize, cleanSplit } = require('./utils')
 const render = require('./render')
 
-const alphabet = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_-'
+const alphabet =
+  '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_-'
 function toAlphabetNumber(number) {
   const rest = number % alphabet.length
   const char = alphabet[rest]
@@ -18,10 +19,13 @@ const getClassName = n => '.y' + toAlphabetNumber(n)
 function Yss(opts = {}) {
   let classCounter = 0
 
-  opts = Object.assign({
-    getClassName,
-    render
-  }, opts)
+  opts = Object.assign(
+    {
+      getClassName,
+      render,
+    },
+    opts
+  )
 
   // this is the prototype of a styling instance.
   const baseInstance = {
@@ -85,7 +89,11 @@ function Yss(opts = {}) {
   // and call the helpers on them right away
   yss.helper = function(name, ...args) {
     let fn = args[0]
-    if (typeof args[0] === 'string' || Array.isArray(args[0]) || args[0].style) {
+    if (
+      typeof args[0] === 'string' ||
+      Array.isArray(args[0]) ||
+      args[0].style
+    ) {
       fn = y => y(...args)
     }
     if (fn.length === 1) {
@@ -113,7 +121,6 @@ function Yss(opts = {}) {
   }
 
   return yss
-
 }
 
 module.exports = Yss
