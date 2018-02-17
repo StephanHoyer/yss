@@ -2,14 +2,31 @@
 const { camelize, cleanSplit } = require('./utils')
 const render = require('./render')
 
-function Yss() {
+const alphabet = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_-'
+function toAlphabetNumber(number) {
+  const rest = number % alphabet.length
+  const char = alphabet[rest]
+  if (number < alphabet.length) {
+    return char
+  }
+  const quotient = Math.floor(number / alphabet.length)
+  return toAlphabetNumber(quotient) + char
+}
 
+const getClassName = n => '.y' + toAlphabetNumber(n)
+
+function Yss(opts = {}) {
   let classCounter = 0
+
+  opts = Object.assign({
+    getClassName,
+    render
+  }, opts)
 
   // this is the prototype of a styling instance.
   const baseInstance = {
     get class() {
-      const classname = '.someClass' + classCounter++
+      const classname = opts.getClassName(classCounter++, this.style)
       yss.style[classname] = this.style
       return classname
     },
@@ -60,7 +77,7 @@ function Yss() {
 
   yss.style = {}
   Object.defineProperty(yss, 'css', {
-    get: () => render(yss.style),
+    get: () => opts.render(yss.style),
   })
 
   // this is the function to create helpers. Helpers are attached to the prototype of the styling

@@ -68,11 +68,11 @@ o.spec('yss', () => {
   o('css classes and global style', () => {
     const y1 = yss({ fill: 'rose' })
     const y2 = yss({ fill: 'gold' })
-    o(y1.class).equals('.someClass0')
-    o('' + y2).equals('.someClass1')
+    o(y1.class).equals('.y0')
+    o('' + y2).equals('.y1')
     o(yss.style).deepEquals({
-      '.someClass0': { fill: 'rose' },
-      '.someClass1': { fill: 'gold' },
+      '.y0': { fill: 'rose' },
+      '.y1': { fill: 'gold' },
     })
   })
 
@@ -80,11 +80,11 @@ o.spec('yss', () => {
     const y = yss({ backgroundColor: 'green' })
     y.style[':pseudo(1)'] = yss({ fill: 'darkgreen' })
     y.style[':pseudo(1)'].style[':pseudo(2)'] = yss({ fill: 'darkergreen' })
-    o(y.class).equals('.someClass0')
+    o(y.class).equals('.y0')
     o(yss.css).deepEquals(
-      '.someClass0{background-color:green}' +
-        '.someClass0:pseudo(1){fill:darkgreen}' +
-        '.someClass0:pseudo(1):pseudo(2){fill:darkergreen}'
+      '.y0{background-color:green}' +
+      '.y0:pseudo(1){fill:darkgreen}' +
+      '.y0:pseudo(1):pseudo(2){fill:darkergreen}'
     )
   })
 
