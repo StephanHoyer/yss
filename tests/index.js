@@ -80,11 +80,9 @@ o.spec('yss', () => {
     const y = yss({ backgroundColor: 'green' })
     y.style[':pseudo(1)'] = yss({ fill: 'darkgreen' })
     y.style[':pseudo(1)'].style[':pseudo(2)'] = yss({ fill: 'darkergreen' })
-    o(y.class).equals('.y0')
+    o(y.class).equals('.y2')
     o(yss.css).deepEquals(
-      '.y0{background-color:green}' +
-        '.y0:pseudo(1){fill:darkgreen}' +
-        '.y0:pseudo(1):pseudo(2){fill:darkergreen}'
+      `.y2{background-color:green}.y2:pseudo(1){fill:darkgreen}.y2:pseudo(1):pseudo(2){fill:darkergreen}`
     )
   })
 

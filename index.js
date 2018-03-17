@@ -16,9 +16,8 @@ function toAlphabetNumber(number) {
 
 const getClassName = n => '.y' + toAlphabetNumber(n)
 
+let classCounter = 0
 function Yss(opts = {}) {
-  let classCounter = 0
-
   opts = Object.assign(
     {
       getClassName,
