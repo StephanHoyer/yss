@@ -43,6 +43,7 @@ function Yss(opts = {}) {
       return this.class
     },
   }
+  Object.setPrototypeOf(baseInstance, function(){})
 
   function parseStyle(key, ...args) {
     if (typeof key === 'string' && !args[0]) {
