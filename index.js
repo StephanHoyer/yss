@@ -15,9 +15,9 @@ function toAlphabetNumber(number) {
 }
 
 const getClassName = n => '.y' + toAlphabetNumber(n)
-
 let classCounter = 0
 function Yss(opts = {}) {
+  const classNamesByStyle = {}
   opts = Object.assign(
     {
       getClassName,
@@ -29,9 +29,15 @@ function Yss(opts = {}) {
   // this is the prototype of a styling instance.
   const baseInstance = {
     get class() {
-      const classname = opts.getClassName(classCounter++, this.style)
-      yss.style[classname] = this.style
-      return classname
+      const serializedStyle = JSON.stringify(this.style)
+      const existingClassname = classNamesByStyle[serializedStyle]
+      if (existingClassname) {
+        return existingClassname
+      }
+      const className = opts.getClassName(classCounter++, this.style)
+      classNamesByStyle[serializedStyle] = className
+      yss.style[className] = this.style
+      return className
     },
     toString: function() {
       return this.class

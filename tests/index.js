@@ -86,6 +86,17 @@ o.spec('yss', () => {
     )
   })
 
+  o('same style, same classname', () => {
+    const a = yss`color: red`
+    const b = yss`color: red`
+    o(a.class).equals(b.class)
+    aClass = a.class
+    a`backgroundColor: green`
+    b`backgroundColor: green`
+    o(a.aClass).notEquals(aClass)
+    o(a.class).equals(b.class)
+  })
+
   o.spec('helper', () => {
     o('plain string', () => {
       yss.helper('fillGreen', 'fill: green')
