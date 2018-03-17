@@ -17,8 +17,13 @@ function cleanSplit(s, regExp) {
     .filter(a => a)
 }
 
+function isObject(thing) {
+  return typeof thing === 'object'
+}
+
 module.exports = {
   kebabCase,
   camelize,
   cleanSplit,
+  isObject
 }

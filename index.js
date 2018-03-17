@@ -1,5 +1,5 @@
 'use strinct'
-const { camelize, cleanSplit } = require('./utils')
+const { camelize, cleanSplit, isObject } = require('./utils')
 const render = require('./render')
 
 const alphabet =
@@ -93,6 +93,14 @@ function Yss(opts = {}) {
   // instances and to yss itself. When called on yss, they automatically create an instance and
   // and call the helpers on them right away
   yss.helper = function(name, ...args) {
+    if (isObject(name)) {
+      // define multiple helpers at once
+      const helpers = name
+      for (name in helpers) {
+        yss.helper(name, helpers[name])
+      }
+      return
+    }
     let fn = args[0]
     if (
       typeof args[0] === 'string' ||
