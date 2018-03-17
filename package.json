@@ -1,6 +1,6 @@
 {
   "name": "yss",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "why style sheets?",
   "main": "index.js",
   "scripts": {
