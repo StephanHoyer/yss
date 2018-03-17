@@ -6,5 +6,9 @@ module.exports = {
   },
   media(y, def, style) {
     y.style[`@media ${def}`] = style
+  },
+
+  animate(y, timing, frameStyles) {
+    y.style.animation = { frameStyles, timing }
   }
 }

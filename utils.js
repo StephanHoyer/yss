@@ -38,5 +38,7 @@ module.exports = {
   camelize,
   cleanSplit,
   isObject,
+  toAlphabetNumber,
   getClassName: n => '.y' + toAlphabetNumber(n),
+  map: (obj, fn) => Object.keys(obj).map(key => fn(obj[key], key))
 }

@@ -29,6 +29,9 @@ function Yss(opts = {}) {
     toString: function() {
       return this.class
     },
+    toJSON: function() {
+      return this.style
+    },
   }
   Object.setPrototypeOf(baseInstance, function(){})
 
