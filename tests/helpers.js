@@ -1,6 +1,7 @@
 const o = require('ospec')
 const Yss = require('..')
 const pseudo = require('../helpers/pseudo')
+const { nest, media } = require('../helpers')
 
 o.spec('pseudo helper', () => {
   let yss
@@ -47,5 +48,23 @@ o.spec('pseudo helper', () => {
     })
     const y = yss`color: green`.hoverdarken
     o(y.style[':hover'].style).deepEquals({ color: 'darkgreen' })
+  })
+})
+o.spec('other helper', () => {
+  let yss
+
+  o.beforeEach(() => {
+    yss = Yss()
+    pseudo(yss, 'hover')
+  })
+
+  o('nest helper', () => {
+    yss.helper('nest', nest)
+    o(yss.nest('span', yss`background purple`).style[' span'].style).deepEquals({ background: 'purple' })
+  })
+
+  o('media query helper', () => {
+    yss.helper('media', media)
+    o(yss.media('only screen and (max-width: 600px)', yss`background brick`).style['@media only screen and (max-width: 600px)'].style).deepEquals({ background: 'brick' })
   })
 })

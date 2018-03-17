@@ -3,23 +3,32 @@
 const { kebabCase } = require('./utils')
 const keys = Object.keys
 
-function isNoPseudo(attr) {
-  return attr[0] !== ':'
+function isAttr(attr) {
+  return attr[0] !== ':' && attr[0] !== ' ' && attr[0] !== '@'
 }
-function isPseudo(attr) {
-  return attr[0] === ':'
+
+function isSubselector(attr) {
+  return attr[0] === ':' || attr[0] === ' '
+}
+
+function isMediaQuery(attr) {
+  return attr[0] === '@'
 }
 
 function toCssDefinition(cssClass, style) {
   const baseStyle = keys(style)
-    .filter(isNoPseudo)
+    .filter(isAttr)
     .map(attr => `${kebabCase(attr)}:${style[attr]}`)
     .join(';')
-  const pseudoStyles = keys(style)
-    .filter(isPseudo)
+  const subStyles = keys(style)
+    .filter(isSubselector)
     .map(pseudo => toCssDefinition(cssClass + pseudo, style[pseudo].style))
     .join('')
-  return `${cssClass}{${baseStyle}}${pseudoStyles}`
+  const mediaStyles = keys(style)
+    .filter(isMediaQuery)
+    .map(mediaQuery => `${mediaQuery}{${toCssDefinition(`${cssClass}`, style[mediaQuery].style)}}`)
+    .join('')
+  return `${cssClass}{${baseStyle}}${subStyles}${mediaStyles}`
 }
 
 module.exports = function(style) {
