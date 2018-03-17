@@ -1,20 +1,7 @@
-'use strinct'
-const { camelize, cleanSplit, isObject } = require('./utils')
+'use strict'
+const { camelize, cleanSplit, isObject, toAlphabetNumber, getClassName } = require('./utils')
 const render = require('./render')
 
-const alphabet =
-  '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_-'
-function toAlphabetNumber(number) {
-  const rest = number % alphabet.length
-  const char = alphabet[rest]
-  if (number < alphabet.length) {
-    return char
-  }
-  const quotient = Math.floor(number / alphabet.length)
-  return toAlphabetNumber(quotient) + char
-}
-
-const getClassName = n => '.y' + toAlphabetNumber(n)
 let classCounter = 0
 function Yss(opts = {}) {
   const classNamesByStyle = {}

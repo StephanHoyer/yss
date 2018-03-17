@@ -21,9 +21,22 @@ function isObject(thing) {
   return typeof thing === 'object'
 }
 
+const alphabet =
+  '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_-'
+function toAlphabetNumber(number) {
+  const rest = number % alphabet.length
+  const char = alphabet[rest]
+  if (number < alphabet.length) {
+    return char
+  }
+  const quotient = Math.floor(number / alphabet.length)
+  return toAlphabetNumber(quotient) + char
+}
+
 module.exports = {
   kebabCase,
   camelize,
   cleanSplit,
-  isObject
+  isObject,
+  getClassName: n => '.y' + toAlphabetNumber(n),
 }
