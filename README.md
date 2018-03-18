@@ -13,6 +13,6 @@ const myLink = 'a' + yss.fsL.dIb.bgBlue.fgWhite.brPill.boNone.hoGrow.ulNone
 m(myLink, { href: '#' }, 'Click me')
 ```
 
-## Credidts
+## Credits
 
 Heavily inspired by https://github.com/porsager/bss. Thanks Rasmus!
