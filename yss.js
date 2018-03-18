@@ -109,6 +109,34 @@
     return keyframes + styles
   }
 
+  function nest(y, selector, style) {
+    y.style[(" " + selector)] = style;
+  }
+
+  function media(y, def, style) {
+    y.style[("@media " + def)] = style;
+  }
+
+  function animate(y, timing, frameStyles) {
+    y.style.animation = { frameStyles: frameStyles, timing: timing };
+  }
+
+  function pseudo(yss, name, helperName) {
+    if ( helperName === void 0 ) helperName = name;
+
+    var selector = ":" + name;
+    yss.helper(helperName, function (y, key) {
+      var ref;
+
+      var args = [], len = arguments.length - 2;
+      while ( len-- > 0 ) args[ len ] = arguments[ len + 2 ];
+      if (!y.style[selector] || !y.style[selector].style) {
+        y.style[selector] = yss(y.style[selector]);
+      }
+      (ref = y.style)[selector].apply(ref, [ key ].concat( args ));
+    });
+  }
+
   var classCounter = 0;
   function Yss(opts) {
     if ( opts === void 0 ) opts = {};
@@ -256,6 +284,13 @@
         };
       }
     };
+
+    // add default helpers
+    yss.helper('nest', nest);
+    yss.helper('media', media);
+    yss.helper('animate', animate);
+    pseudo(yss, 'hover');
+    pseudo(yss, 'focus');
 
     return yss
   }

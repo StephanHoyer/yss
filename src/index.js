@@ -7,6 +7,7 @@ import {
   getClassName,
 } from './utils'
 import render from './render'
+import { nest, media, animate, pseudo } from './helpers'
 
 let classCounter = 0
 function Yss(opts = {}) {
@@ -129,6 +130,13 @@ function Yss(opts = {}) {
       yss[name] = (...args) => yss({})[name](...args)
     }
   }
+
+  // add default helpers
+  yss.helper('nest', nest)
+  yss.helper('media', media)
+  yss.helper('animate', animate)
+  pseudo(yss, 'hover')
+  pseudo(yss, 'focus')
 
   return yss
 }

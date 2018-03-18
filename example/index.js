@@ -1,16 +1,7 @@
 import m from 'mithril'
 import Yss from '../yss'
-import pseudo from '../src/helpers/pseudo'
-import { nest, media, animate } from '../src/helpers'
 
 const yss = Yss()
-
-pseudo(yss, 'hover')
-pseudo(yss, 'focus')
-
-yss.helper('nest', nest)
-yss.helper('media', media)
-yss.helper('animate', animate)
 
 function defaultUnit(property, fallbackUnit = 'rem') {
   return (y, value, unit = fallbackUnit) => y`${property} ${value}${unit}`
