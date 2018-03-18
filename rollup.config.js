@@ -4,7 +4,7 @@ import filesize from 'rollup-plugin-filesize'
 
 export default [
   {
-    input: './index.js',
+    input: './src/index.js',
     output: {
       file: 'yss.js',
       exports: 'default',
@@ -15,7 +15,7 @@ export default [
     plugins: process.env.TEST ? [] : [buble(), filesize()],
   },
   {
-    input: './index.js',
+    input: './src/index.js',
     output: {
       file: 'yss.min.js',
       exports: 'default',

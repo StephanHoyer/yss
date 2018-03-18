@@ -1,7 +1,9 @@
-const m = require('mithril')
-const yss = require('../index')()
-const pseudo = require('../helpers/pseudo')
-const { nest, media, animate } = require('../helpers')
+import m from 'mithril'
+import Yss from '../yss'
+import pseudo from '../src/helpers/pseudo'
+import { nest, media, animate } from '../src/helpers'
+
+const yss = Yss()
 
 pseudo(yss, 'hover')
 pseudo(yss, 'focus')

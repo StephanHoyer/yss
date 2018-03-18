@@ -1,7 +1,7 @@
 const o = require('ospec')
 const Yss = require('../yss')
-const pseudo = require('../helpers/pseudo')
-const { nest, media } = require('../helpers')
+const pseudo = require('../src/helpers/pseudo')
+const { nest, media } = require('../src/helpers')
 
 o.spec('pseudo helper', () => {
   let yss
