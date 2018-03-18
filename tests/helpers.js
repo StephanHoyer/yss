@@ -1,5 +1,5 @@
 const o = require('ospec')
-const Yss = require('..')
+const Yss = require('../yss')
 const pseudo = require('../helpers/pseudo')
 const { nest, media } = require('../helpers')
 

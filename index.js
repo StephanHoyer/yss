@@ -1,12 +1,12 @@
 'use strict'
-const {
+import {
   camelize,
   cleanSplit,
   isObject,
   toAlphabetNumber,
   getClassName,
-} = require('./utils')
-const render = require('./render')
+} from './utils'
+import render from './render'
 
 let classCounter = 0
 function Yss(opts = {}) {
@@ -133,4 +133,4 @@ function Yss(opts = {}) {
   return yss
 }
 
-module.exports = Yss
+export default Yss

@@ -2,28 +2,28 @@
 
 var KEBAB_REGEX = /[A-Z\u00C0-\u00D6\u00D8-\u00DE]/g
 
-function kebabCase(str) {
+export function kebabCase(str) {
   return str.replace(KEBAB_REGEX, match => `-${match.toLowerCase()}`)
 }
 
-function camelize(s) {
+export function camelize(s) {
   return s.replace(/-([a-z])/g, g => g[1].toUpperCase())
 }
 
-function cleanSplit(s, regExp) {
+export function cleanSplit(s, regExp) {
   return s
     .split(regExp)
     .map(a => a.trim())
     .filter(a => a)
 }
 
-function isObject(thing) {
+export function isObject(thing) {
   return typeof thing === 'object'
 }
 
 const alphabet =
   '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_-'
-function toAlphabetNumber(number) {
+export function toAlphabetNumber(number) {
   const rest = number % alphabet.length
   const char = alphabet[rest]
   if (number < alphabet.length) {
@@ -33,12 +33,11 @@ function toAlphabetNumber(number) {
   return toAlphabetNumber(quotient) + char
 }
 
-module.exports = {
-  kebabCase,
-  camelize,
-  cleanSplit,
-  isObject,
-  toAlphabetNumber,
-  getClassName: n => '.y' + toAlphabetNumber(n),
-  map: (obj, fn) => Object.keys(obj).map(key => fn(obj[key], key)),
+export function getClassName(n) {
+  return '.y' + toAlphabetNumber(n)
+}
+
+export const keys = Object.keys
+export function map(obj, fn) {
+  return Object.keys(obj).map(key => fn(obj[key], key))
 }

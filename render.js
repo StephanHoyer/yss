@@ -1,7 +1,6 @@
 'use strict'
 
-const { kebabCase, map, toAlphabetNumber } = require('./utils')
-const keys = Object.keys
+import { kebabCase, map, toAlphabetNumber, keys } from './utils'
 
 function isAttr(attr) {
   return attr[0] !== ':' && attr[0] !== ' ' && attr[0] !== '@'
@@ -17,7 +16,7 @@ function isMediaQuery(attr) {
 
 const animationNameByStyle = {}
 let animationCounter = 0
-module.exports = function(style) {
+export default function(style) {
   const usedAnimations = {}
   function toCssDefinition(cssClass, style) {
     const baseStyle = keys(style)

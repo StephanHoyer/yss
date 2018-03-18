@@ -1,8 +1,8 @@
 # yss - why style sheets?
 
-![](http://img.badgesize.io/StephanHoyer/yss/master/index.js.svg?compression=gzip)
+![](http://img.badgesize.io/StephanHoyer/yss/master/yss.min.js.svg?compression=gzip)
 
-## What is *yss*?
+## What is _yss_?
 
 Given that you use the mighty [mithril.js](https://mithril.js.org) wouldn't it be great to be able to do something like this:
 
@@ -25,7 +25,6 @@ or even
 a.fsL.dIb.bgBlue.fgWhite.brPill.boNone.hoGrow.ulNone({ href: '#' }, 'Click me')
 ```
 
-Well with *yss* this might be possible.
+Well with _yss_ this might be possible.
 
 Heavily inspired by https://github.com/porsager/bss. Thanks Rasmus!
-

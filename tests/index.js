@@ -1,5 +1,5 @@
 const o = require('ospec')
-const Yss = require('..')
+const Yss = require('../yss')
 
 o.spec('yss', () => {
   let yss
