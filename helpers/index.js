@@ -10,5 +10,5 @@ module.exports = {
 
   animate(y, timing, frameStyles) {
     y.style.animation = { frameStyles, timing }
-  }
+  },
 }

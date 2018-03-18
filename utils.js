@@ -40,5 +40,5 @@ module.exports = {
   isObject,
   toAlphabetNumber,
   getClassName: n => '.y' + toAlphabetNumber(n),
-  map: (obj, fn) => Object.keys(obj).map(key => fn(obj[key], key))
+  map: (obj, fn) => Object.keys(obj).map(key => fn(obj[key], key)),
 }

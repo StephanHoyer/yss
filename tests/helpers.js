@@ -26,7 +26,10 @@ o.spec('pseudo helper', () => {
       color: black
       background: blue
     `
-    o(y.style[':hover'].style).deepEquals({ color: 'black', background: 'blue' })
+    o(y.style[':hover'].style).deepEquals({
+      color: 'black',
+      background: 'blue',
+    })
   })
 
   o('overwrite hover styles', () => {
@@ -60,11 +63,16 @@ o.spec('other helper', () => {
 
   o('nest helper', () => {
     yss.helper('nest', nest)
-    o(yss.nest('span', yss`background purple`).style[' span'].style).deepEquals({ background: 'purple' })
+    o(yss.nest('span', yss`background purple`).style[' span'].style).deepEquals(
+      { background: 'purple' }
+    )
   })
 
   o('media query helper', () => {
     yss.helper('media', media)
-    o(yss.media('only screen and (max-width: 600px)', yss`background brick`).style['@media only screen and (max-width: 600px)'].style).deepEquals({ background: 'brick' })
+    o(
+      yss.media('only screen and (max-width: 600px)', yss`background brick`)
+        .style['@media only screen and (max-width: 600px)'].style
+    ).deepEquals({ background: 'brick' })
   })
 })

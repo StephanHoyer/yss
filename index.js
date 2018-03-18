@@ -1,5 +1,11 @@
 'use strict'
-const { camelize, cleanSplit, isObject, toAlphabetNumber, getClassName } = require('./utils')
+const {
+  camelize,
+  cleanSplit,
+  isObject,
+  toAlphabetNumber,
+  getClassName,
+} = require('./utils')
 const render = require('./render')
 
 let classCounter = 0
@@ -33,7 +39,7 @@ function Yss(opts = {}) {
       return this.style
     },
   }
-  Object.setPrototypeOf(baseInstance, function(){})
+  Object.setPrototypeOf(baseInstance, function() {})
 
   function parseStyle(key, ...args) {
     if (typeof key === 'string' && !args[0]) {
