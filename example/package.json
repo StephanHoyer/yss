@@ -2,7 +2,7 @@
   "name": "example",
   "version": "1.0.0",
   "description": "example usage with mithril",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "start": "parcel index.html"
   },

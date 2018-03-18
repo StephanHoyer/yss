@@ -2,7 +2,7 @@
   "name": "yss",
   "version": "0.1.3",
   "description": "why style sheets?",
-  "main": "index.js",
+  "main": "yss.min.js",
   "scripts": {
     "test": "npm run build && ospec",
     "build": "rollup -c"
