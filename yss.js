@@ -25,16 +25,8 @@
     return typeof thing === 'object'
   }
 
-  var alphabet =
-    '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_-';
   function toAlphabetNumber(number) {
-    var rest = number % alphabet.length;
-    var char = alphabet[rest];
-    if (number < alphabet.length) {
-      return char
-    }
-    var quotient = Math.floor(number / alphabet.length);
-    return toAlphabetNumber(quotient) + char
+    return number.toString(36)
   }
 
   function getClassName(n) {

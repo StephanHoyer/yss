@@ -21,16 +21,8 @@ export function isObject(thing) {
   return typeof thing === 'object'
 }
 
-const alphabet =
-  '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_-'
 export function toAlphabetNumber(number) {
-  const rest = number % alphabet.length
-  const char = alphabet[rest]
-  if (number < alphabet.length) {
-    return char
-  }
-  const quotient = Math.floor(number / alphabet.length)
-  return toAlphabetNumber(quotient) + char
+  return number.toString(36)
 }
 
 export function getClassName(n) {
