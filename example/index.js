@@ -88,22 +88,24 @@ yss.helper({
 
 // more helpers
 yss.helper({
-  hoverDarken: y => y.hover('background', 'dark' + y.style.background),
+  hoverDarken: y => y.hover(yss.bg(`dark${y.style.background}`)),
   flex: (y, alignItems = 'center', justifyContent = 'center') => {
     y`display flex`({ alignItems, justifyContent })
   },
 })
 
 // an a somewhat more complex helper
-yss.helper(
-  'button',
-  (y, background) =>
-    y.flex.bn.brPill.ttu.i.fs1.pv3.ph4`
+yss.helper('button', (y, background) => {
+  y.flex.bn.brPill.ttu.i.fs1.pv3.ph4`
     color white
     transition background 0.2s ease-in-out
     background ${background}
   `.focus`outline: none`.hoverDarken
-)
+})
+
+yss.helper('desktop', (y, style) => {
+  y.media('(min-width: 800px)', style)
+})
 
 // define some animations
 const rainbow = {
@@ -128,7 +130,7 @@ const responsiveDiv =
   yss
     .size(5)
     .bg('red')
-    .media('(max-width: 1000px)', yss.bg('green'))
+    .desktop(yss.bg('green'))
 const bwDiv =
   'div' +
   yss.size(5).animate('10s infinite', bwAnimation)`transition background 1s`
