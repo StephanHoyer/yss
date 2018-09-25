@@ -62,12 +62,20 @@ o.spec('other helper', () => {
     o(yss.nest('span', yss`background purple`).style[' span'].style).deepEquals(
       { background: 'purple' }
     )
+    o(
+      yss.nest('span', { background: 'purple' }).style[' span'].style
+    ).deepEquals({ background: 'purple' })
   })
 
   o('media query helper', () => {
     o(
       yss.media('only screen and (max-width: 600px)', yss`background brick`)
         .style['@media only screen and (max-width: 600px)'].style
+    ).deepEquals({ background: 'brick' })
+    o(
+      yss.media('only screen and (max-width: 600px)', 'background brick').style[
+        '@media only screen and (max-width: 600px)'
+      ].style
     ).deepEquals({ background: 'brick' })
   })
 })

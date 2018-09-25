@@ -78,6 +78,7 @@ function Yss(opts = {}) {
       return styleInstance
     }
     styleInstance.style = {}
+    styleInstance.yss = yss
     Object.setPrototypeOf(styleInstance, baseInstance)
     return styleInstance(...args)
   }

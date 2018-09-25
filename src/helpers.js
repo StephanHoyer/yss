@@ -1,11 +1,11 @@
 'use strict'
 
 export function nest(y, selector, style) {
-  y.style[` ${selector}`] = style
+  y.style[` ${selector}`] = y.yss(style)
 }
 
 export function media(y, def, style) {
-  y.style[`@media ${def}`] = style
+  y.style[`@media ${def}`] = y.yss(style)
 }
 
 export function animate(y, timing, frameStyles) {

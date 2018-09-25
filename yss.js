@@ -102,11 +102,11 @@
   }
 
   function nest(y, selector, style) {
-    y.style[(" " + selector)] = style;
+    y.style[(" " + selector)] = y.yss(style);
   }
 
   function media(y, def, style) {
-    y.style[("@media " + def)] = style;
+    y.style[("@media " + def)] = y.yss(style);
   }
 
   function animate(y, timing, frameStyles) {
@@ -212,6 +212,7 @@
         return styleInstance
       }
       styleInstance.style = {};
+      styleInstance.yss = yss;
       Object.setPrototypeOf(styleInstance, baseInstance);
       return styleInstance.apply(void 0, args)
     }
