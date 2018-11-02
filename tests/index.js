@@ -93,7 +93,7 @@ o.spec('yss', () => {
     aClass = a.class
     a`backgroundColor: green`
     b`backgroundColor: green`
-    o(a.aClass).notEquals(aClass)
+    o(a.class).notEquals(aClass)
     o(a.class).equals(b.class)
   })
 
