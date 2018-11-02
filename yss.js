@@ -194,7 +194,7 @@
       }
       if (args[0]) {
         // key/value definition
-        return ( obj = {}, obj[key] = args[0], obj)
+        return ( obj = {}, obj[key] = args[0], obj )
       }
       return key // object
     }

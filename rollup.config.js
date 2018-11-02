@@ -23,6 +23,6 @@ export default [
       name: 'Yss',
       sourcemap: true,
     },
-    plugins: [buble(), uglify({ mangle: true, compress: true }), filesize()],
+    plugins: [buble(), uglify.uglify({ mangle: true, compress: true }), filesize()],
   },
 ]

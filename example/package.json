@@ -12,6 +12,6 @@
     "mithril": "1.1.6"
   },
   "devDependencies": {
-    "parcel-bundler": "1.6.2"
+    "parcel-bundler": "1.10.3"
   }
 }
