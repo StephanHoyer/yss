@@ -164,11 +164,11 @@
     };
     Object.setPrototypeOf(baseInstance, function() {});
 
-    function parseStyle(key) {
+    function parseStyle(styleInstance, key) {
       var obj;
 
-      var args = [], len = arguments.length - 1;
-      while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+      var args = [], len = arguments.length - 2;
+      while ( len-- > 0 ) args[ len ] = arguments[ len + 2 ];
       if (typeof key === 'string' && !args[0]) {
         // plain string, parse like template string
         key = [key];
@@ -184,7 +184,13 @@
           var ref = cleanSplit(row, /[ :]/);
           var key = ref[0];
           var value = ref.slice(1);
-          style[camelize(key)] = value.join(' ');
+          var prop = camelize(key);
+          // if there is a helper with prop name, use it
+          if (styleInstance[prop]) {
+            styleInstance[prop].apply(styleInstance, value);
+          } else {
+            style[prop] = value.join(' ');
+          }
           return style
         }, {})
       }
@@ -208,7 +214,10 @@
         var styleArgs = [], len = arguments.length;
         while ( len-- ) styleArgs[ len ] = arguments[ len ];
 
-        Object.assign(styleInstance.style, parseStyle.apply(void 0, styleArgs));
+        Object.assign(
+          styleInstance.style,
+          parseStyle.apply(void 0, [ styleInstance ].concat( styleArgs ))
+        );
         return styleInstance
       }
       styleInstance.style = {};

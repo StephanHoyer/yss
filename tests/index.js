@@ -136,5 +136,40 @@ o.spec('yss', () => {
         border: 'none',
       })
     })
+
+    o('helper used as string', () => {
+      yss.helper('fillBorder', (y, color) => {
+        return y`
+          fill: ${color}
+          border: ${color}
+        `
+      })
+      o(
+        yss`
+          fillBorder: brick
+        `.style
+      ).deepEquals({
+        fill: 'brick',
+        border: 'brick',
+      })
+    })
+
+    o('allow overwrite when helper used as string', () => {
+      yss.helper('fillBorder', (y, color) => {
+        return y`
+          fill: ${color}
+          border: ${color}
+        `
+      })
+      o(
+        yss`
+          fillBorder: brick
+          border: green
+        `.style
+      ).deepEquals({
+        fill: 'brick',
+        border: 'green',
+      })
+    })
   })
 })

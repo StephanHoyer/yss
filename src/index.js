@@ -42,7 +42,7 @@ function Yss(opts = {}) {
   }
   Object.setPrototypeOf(baseInstance, function() {})
 
-  function parseStyle(key, ...args) {
+  function parseStyle(styleInstance, key, ...args) {
     if (typeof key === 'string' && !args[0]) {
       // plain string, parse like template string
       key = [key]
@@ -56,7 +56,13 @@ function Yss(opts = {}) {
       // build style object
       return cleanSplit(string, /[;\n]/).reduce((style, row) => {
         let [key, ...value] = cleanSplit(row, /[ :]/)
-        style[camelize(key)] = value.join(' ')
+        const prop = camelize(key)
+        // if there is a helper with prop name, use it
+        if (styleInstance[prop]) {
+          styleInstance[prop](...value)
+        } else {
+          style[prop] = value.join(' ')
+        }
         return style
       }, {})
     }
@@ -74,7 +80,10 @@ function Yss(opts = {}) {
   // this creates a styling instance and hooks the upper prototype to it
   function yss(...args) {
     function styleInstance(...styleArgs) {
-      Object.assign(styleInstance.style, parseStyle(...styleArgs))
+      Object.assign(
+        styleInstance.style,
+        parseStyle(styleInstance, ...styleArgs)
+      )
       return styleInstance
     }
     styleInstance.style = {}
