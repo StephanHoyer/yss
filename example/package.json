@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mithril": "1.1.7"
+    "mithril": "2.0.4"
   },
   "devDependencies": {
     "parcel-bundler": "1.12.4"
