@@ -16,7 +16,7 @@ function isMediaQuery(attr) {
 
 const animationNameByStyle = {}
 let animationCounter = 0
-export default function(style) {
+export default function (style) {
   const usedAnimations = {}
   function toCssDefinition(cssClass, style) {
     const baseStyle = keys(style)
@@ -58,7 +58,7 @@ export default function(style) {
   }
 
   const styles = keys(style)
-    .map(function(cssClass) {
+    .map(function (cssClass) {
       return `${toCssDefinition(cssClass, style[cssClass])}`
     })
     .join('')

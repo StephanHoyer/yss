@@ -3,7 +3,7 @@
   "env": {
     "commonjs": true,
     "es6": true,
-    "node": true,
+    "node": true
   },
   "rules": {
     "semi": "off",

@@ -125,12 +125,7 @@ const bwAnimation = {
 const blueButton = 'button' + yss.button('blue')
 const greenButton = 'button' + yss.button('green')
 const list = 'ul' + yss.nest('li', yss.c('green').hover(yss.c('red')))
-const responsiveDiv =
-  'div' +
-  yss
-    .size(5)
-    .bg('red')
-    .desktop(yss.bg('green'))
+const responsiveDiv = 'div' + yss.size(5).bg('red').desktop(yss.bg('green'))
 const bwDiv =
   'div' +
   yss.size(5).animate('10s infinite', bwAnimation)`transition background 1s`

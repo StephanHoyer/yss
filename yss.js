@@ -52,7 +52,7 @@
 
   var animationNameByStyle = {};
   var animationCounter = 0;
-  function render(style) {
+  function render (style) {
     var usedAnimations = {};
     function toCssDefinition(cssClass, style) {
       var baseStyle = keys(style)
@@ -90,7 +90,7 @@
     }
 
     var styles = keys(style)
-      .map(function(cssClass) {
+      .map(function (cssClass) {
         return ("" + (toCssDefinition(cssClass, style[cssClass])))
       })
       .join('');
@@ -155,14 +155,14 @@
         yss.style[className] = this.style;
         return className
       },
-      toString: function() {
+      toString: function () {
         return this.class
       },
-      toJSON: function() {
+      toJSON: function () {
         return this.style
       },
     };
-    Object.setPrototypeOf(baseInstance, function() {});
+    Object.setPrototypeOf(baseInstance, function () {});
 
     function parseStyle(styleInstance, key) {
       var obj;
@@ -234,7 +234,7 @@
     // this is the function to create helpers. Helpers are attached to the prototype of the styling
     // instances and to yss itself. When called on yss, they automatically create an instance and
     // and call the helpers on them right away
-    yss.helper = function(name) {
+    yss.helper = function (name) {
       var args = [], len = arguments.length - 1;
       while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
 
@@ -257,7 +257,7 @@
       if (fn.length === 1) {
         // set to baseInstance
         Object.defineProperty(baseInstance, name, {
-          get: function() {
+          get: function () {
             fn(this);
             return this
           },
@@ -269,7 +269,7 @@
         });
       } else {
         // set to baseInstance
-        baseInstance[name] = function() {
+        baseInstance[name] = function () {
           var args = [], len = arguments.length;
           while ( len-- ) args[ len ] = arguments[ len ];
 

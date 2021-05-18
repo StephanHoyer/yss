@@ -59,9 +59,9 @@ o.spec('other helper', () => {
   })
 
   o('nest helper', () => {
-    o(yss.nest('span', yss`background purple`).style[' span'].style).deepEquals(
-      { background: 'purple' }
-    )
+    o(
+      yss.nest('span', yss`background purple`).style[' span'].style
+    ).deepEquals({ background: 'purple' })
     o(
       yss.nest('span', { background: 'purple' }).style[' span'].style
     ).deepEquals({ background: 'purple' })
