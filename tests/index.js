@@ -69,6 +69,7 @@ o.spec('yss', () => {
     const y1 = yss({ fill: 'rose' })
     const y2 = yss({ fill: 'gold' })
     o(y1.class).equals('.y0')
+    o(y1.className).equals('y0')
     o('' + y2).equals('.y1')
     o(yss.style).deepEquals({
       '.y0': { fill: 'rose' },

@@ -161,6 +161,9 @@
       toJSON: function () {
         return this.style
       },
+      get className() {
+        return this.class.slice(1)
+      },
     };
     Object.setPrototypeOf(baseInstance, function () {});
 
